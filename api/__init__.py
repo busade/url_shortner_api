@@ -40,6 +40,7 @@ def create_app(config=config_dict['prod']):
     
     @app.shell_context_processor
     def make_shell_context():
+        db.create_all()
         return {
             'db':db,
             'Users':Users,
