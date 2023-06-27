@@ -16,10 +16,22 @@ from werkzeug.exceptions import NotFound, MethodNotAllowed
 def create_app(config=config_dict['prod']):
     app = Flask(__name__)
     app.config.from_object(config)
+    authorizations = {
+        "Bearer Auth": {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization',
+            'decription':"add a JWT with ** Bearer &lt;JWT&gt; to authorize"
+        }
+    }
+
     api=Api(app,
             title="url Shortner API",
             version="1.0",
-            description="A simple url shortner API"
+            description="A simple url shortner API",
+            authorizations=authorizations,
+            security='Bearer Auth'
+
             )
     CORS(app)
     jwt = JWTManager(app)
