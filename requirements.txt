@@ -31,6 +31,7 @@ Mako==1.2.4
 MarkupSafe==2.1.2
 packaging==23.1
 pluggy==1.0.0
+psycopg2==2.9.6
 psycopg2-binary==2.9.6
 PyJWT==2.7.0
 pyparsing==3.0.9
