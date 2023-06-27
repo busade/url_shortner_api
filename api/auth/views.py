@@ -44,7 +44,7 @@ class Signup(Resource):
             new_user.save()
             return new_user, HTTPStatus.CREATED
         except Exception as e:
-            raise Conflict (f"User with {data.get('email')} exists")
+            raise Conflict (e)
 
 
 @auth_namespace.route('/')
