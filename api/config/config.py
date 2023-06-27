@@ -26,7 +26,6 @@ class Prod (Config):
     Debug = config('DEBUG',cast = bool)
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or uri
     SQLALCHEMY_TRACK_MODICATIONS = False
-    # postgres://url_shortner_sn7w_user:aU0t8ENtxLdGBmyhGtEWfn8ASuiaOZri@dpg-cid8sflgkuvncfcha5vg-a.oregon-postgres.render.com/url_shortner_sn7w
 class Test (Config):
     Testing = True
     DEBUG = config('DEBUG',cast = bool)
