@@ -33,7 +33,7 @@ def create_app(config=config_dict['prod']):
             security='Bearer Auth'
 
             )
-    CORS(app)
+    CORS(app, origins=['http://127.0.0.1:5500'])
     jwt = JWTManager(app)
     db.init_app(app)
     migrate = Migrate(app, db)
