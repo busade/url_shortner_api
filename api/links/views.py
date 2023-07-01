@@ -100,7 +100,7 @@ class short_url(Resource):
 
 
 @links_namespace.route('/short_url/<int:url_id>')
-class  Get(Resource):
+class  Details(Resource):
     @links_namespace.marshal_with(link_model) 
     @links_namespace.doc(
         description="Redirect to long url",

@@ -10,6 +10,7 @@ from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from flask_cors import CORS
 from werkzeug.exceptions import NotFound, MethodNotAllowed
+from flask_swagger_ui import get_swaggerui_blueprint
 
 
 
@@ -40,6 +41,14 @@ def create_app(config=config_dict['prod']):
     api.add_namespace(auth_namespace, path='/auth')
     api.add_namespace(links_namespace, path='/links')
     
+    SWAGGER_URL = '/swagger'
+    Api_URL = '/static/swagger.json'
+    swaggerui_blueprint = get_swaggerui_blueprint(
+        SWAGGER_URL,
+        Api_URL,
+        config={"app_name": "url Shortner API"}
+    )
+    app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
     @app.errorhandler(NotFound)
     def not_found(error):    
