@@ -42,7 +42,7 @@ def create_app(config=config_dict['prod']):
     api.add_namespace(links_namespace, path='/links')
     
     SWAGGER_URL = '/swagger'
-    Api_URL = '/static/swagger.json'
+    Api_URL = '/swagger.json'
     swaggerui_blueprint = get_swaggerui_blueprint(
         SWAGGER_URL,
         Api_URL,

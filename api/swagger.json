@@ -1,0 +1,124 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "URL Shortener API",
+      "version": "1.0.0",
+      "description": "API documentation for the URL Shortener app"
+    },
+    "paths": {
+      "/api/shorten-url": {
+        "post": {
+          "summary": "Shorten a URL",
+          "description": "Creates a shortened version of a long URL",
+          "requestBody": {
+            "description": "Long URL to be shortened",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "The long URL to be shortened"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Shortened URL successfully created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "shortUrl": {
+                        "type": "string",
+                        "description": "The shortened URL"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/shortened-urls": {
+        "get": {
+          "summary": "Get all shortened URLs",
+          "description": "Returns a list of all shortened URLs",
+          "responses": {
+            "200": {
+              "description": "Returns a list of shortened URLs",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "shortUrl": {
+                          "type": "string",
+                          "description": "The shortened URL"
+                        },
+                        "longUrl": {
+                          "type": "string",
+                          "description": "The original long URL"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/shortened-urls/{shortUrl}": {
+        "get": {
+          "summary": "Get details of a shortened URL",
+          "description": "Returns details of a specific shortened URL",
+          "parameters": [
+            {
+              "name": "shortUrl",
+              "in": "path",
+              "required": true,
+              "description": "The shortened URL"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns the details of the shortened URL",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "shortUrl": {
+                        "type": "string",
+                        "description": "The shortened URL"
+                      },
+                      "longUrl": {
+                        "type": "string",
+                        "description": "The original long URL"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The creation date of the shortened URL"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
