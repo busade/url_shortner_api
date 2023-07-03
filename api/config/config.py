@@ -10,8 +10,8 @@ if uri and uri.startswith("postgres://"):
 class Config:
     SECRET_KEY = config('SECRET_KEY',"secret")
     SQLALCHEMY_TRACK_MODICATIONS = False
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=30)
-    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=365)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours  =1)
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(hours=2)
     JWT_BLACKLIST_ENABLED = True
     JWT_BLACKLIST_TOKEN_CHECKS = ['access','refresh']
     JWT_SECRET_KEY= config('JWT_SECRET_KEY')

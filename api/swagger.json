@@ -5,8 +5,128 @@
       "version": "1.0.0",
       "description": "API documentation for the URL Shortener app"
     },
+    
     "paths": {
-      "/api/shorten-url": {
+        "/api/auth/signup": {
+            "post": {
+                "summary": "Register a new user",
+                "description": " Creates a new user account",
+                "requestBody": {
+                  "description": "User details to be created",
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "fullname": {
+                            "type": "string",
+                            "description": "fullname of the user"
+                          },
+                            "email": {
+                                "type": "string",
+                                "description": "email of the user"
+                            },
+                            "password_hash": {
+                                "type": "string",
+                                "description": "hashed password of the user"
+                            }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                "200": {
+                  "description": "Returns the details of the newly created user",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fullname": {
+                              "type": "string",
+                              "description": "fullname of the user"
+                            },
+                            "email": {
+                              "type": "string",
+                              "description": "email of the user"
+                            }
+                            ,
+                            "password_hash": {
+                              "type": "string",
+                              "description": "Hashed password of the user"
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "The creation date of the user"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }, 
+          "/api/auth/": {
+            "post": {
+                "summary": "Generate a token",
+                "description": " log in a user and generate a token",
+                "requestBody": {
+                  "description": "User login details ",
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string",
+                                "description": "email of the user"
+                            },
+                            "password_hash": {
+                                "type": "string",
+                                "description": "password of the user"
+                            }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                "200": {
+                  "description": "Returns a token for the user",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "access_token": {
+                              "type": "string",
+                              "description": "Jwt token for the user"
+                            },
+                            "refresh_token": {
+                              "type": "string",
+                              "description": "Refresh Token for the user"
+                            }
+                            
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },  
+      "/api/links/": {
         "post": {
           "summary": "Shorten a URL",
           "description": "Creates a shortened version of a long URL",
