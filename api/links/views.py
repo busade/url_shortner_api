@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 import httplib2, random,string,qrcode
 import geocoder, requests
 from http import HTTPStatus 
-from io import BytesIO
+import qrcode
 from flask_jwt_extended import jwt_required,get_jwt_identity
 
 
@@ -35,9 +35,9 @@ def generate_qrcode(url):
     qr = qrcode.QRCode()
     qr.add_data(url)
     qr.make(fit=True)
-    img = qr.make_image(fill='orange', back_color='white')
-    qr_code = img.save('slit.png')    
-    return img
+    img = qr.get_image()
+    qr_code =img.tobytes()    
+    return qr_code
 def generate_short_url():
     base = "slit.ly/"
     char = string.ascii_letters + string.digits
@@ -75,9 +75,6 @@ class short_url(Resource):
         data= request.get_json()
         url=data['long_url']
         qrcode = generate_qrcode(url)
-        buffer = BytesIO()
-        qrcode.save(buffer)
-        qrcode = buffer.getvalue()
         user= Users.query.filter_by(id=get_jwt_identity()).first()
         check = Links.query.filter_by(long_url=url).first()
 
@@ -155,9 +152,6 @@ class CustomLinks(Resource):
         url = data['long_url']
     
         qrcode = generate_qrcode(url)
-        buffer = BytesIO()
-        qrcode.save(buffer)
-        qrcode = buffer.getvalue()
         user= Users.query.filter_by(id=get_jwt_identity()).first()
         custom_url=data['custom_url']
         c= custom(custom_url)
