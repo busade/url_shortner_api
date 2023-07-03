@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 import httplib2, random,string,qrcode
 import geocoder, requests
 from http import HTTPStatus 
+from io import BytesIO
 import qrcode
 from flask_jwt_extended import jwt_required,get_jwt_identity
 
@@ -36,7 +37,9 @@ def generate_qrcode(url):
     qr.add_data(url)
     qr.make(fit=True)
     img = qr.make_image()
-    qr_code =img.tobytes()    
+    qr_bytes = BytesIO()
+    img.save(qr_bytes, 'PNG')
+    qr_code =qr_bytes.getvalue() 
     return qr_code
 def generate_short_url():
     base = "slit.ly/"
