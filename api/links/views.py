@@ -35,7 +35,7 @@ def generate_qrcode(url):
     qr = qrcode.QRCode()
     qr.add_data(url)
     qr.make(fit=True)
-    img = qr.get_image()
+    img = qr.make_image()
     qr_code =img.tobytes()    
     return qr_code
 def generate_short_url():
