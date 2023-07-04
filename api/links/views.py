@@ -7,7 +7,7 @@ import httplib2, random,string,qrcode
 import geocoder, requests
 from http import HTTPStatus 
 from io import BytesIO
-import qrcode
+import qrcode, base64
 from flask_jwt_extended import jwt_required,get_jwt_identity
 
 
@@ -39,7 +39,7 @@ def generate_qrcode(url):
     img = qr.make_image()
     qr_bytes = BytesIO()
     img.save(qr_bytes, 'PNG')
-    qr_code =qr_bytes.getvalue() 
+    qr_code =base64.b64encode(qr_bytes.getvalue()).decode('utf-8') 
     return qr_code
 def generate_short_url():
     base = "slit.ly/"
