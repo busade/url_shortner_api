@@ -1,7 +1,7 @@
 import os
 from decouple import config 
 from datetime import timedelta
-
+import psycopg2
 
 BASE_DIRECTORY= os.path.dirname(os.path.realpath(__file__))
 uri = config('DATABASE_URL')
@@ -33,7 +33,13 @@ class Test (Config):
     SQLALCHEMY_ECHO = True
     
 
-
+conn = psycopg2.connect(database="url_shortner", user="url_shortner_sn7w_user", password="aU0t8ENtxLdGBmyhGtEWfn8ASuiaOZri",host="dpg-cid8sflgkuvncfcha5vg-a.oregon-postgres.render.com",port="5432")
+con = conn.cursor()
+alt_table =" ALTER TABLE users ALTER COLUMN  qr_code TYPE text;"
+con.execute(alt_table)
+conn.commit()
+con.close()
+conn.close()
 config_dict = {
     'dev':Dev,
     'prod':Prod,
