@@ -38,8 +38,7 @@ def generate_qrcode(url):
     qr.make(fit=True)
     img = qr.make_image()
     qr_bytes = BytesIO()
-    img.save(qr_bytes, 'PNG')
-    qr_code =base64.b64encode(qr_bytes.getvalue()).decode('utf-8') 
+    qr_code=img.save(qr_bytes, 'PNG')
     return qr_code
 def generate_short_url():
     base = "slit.ly/"

@@ -35,7 +35,7 @@ class Test (Config):
 
 conn = psycopg2.connect(database="url_shortner_sn7w", user="url_shortner_sn7w_user", password="aU0t8ENtxLdGBmyhGtEWfn8ASuiaOZri",host="dpg-cid8sflgkuvncfcha5vg-a",port="5432")
 con = conn.cursor()
-alt_table =" ALTER TABLE links ALTER COLUMN  qr_code TYPE text;"
+alt_table =" ALTER TABLE Links ALTER COLUMN  qr_code TYPE BYTEA;"
 con.execute(alt_table)
 conn.commit()
 con.close()
