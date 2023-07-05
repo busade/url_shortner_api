@@ -33,7 +33,7 @@ class Test (Config):
     SQLALCHEMY_ECHO = True
     
 
-conn = psycopg2.connect(database="url shortner", user="url_shortner_sn7w_user", password="aU0t8ENtxLdGBmyhGtEWfn8ASuiaOZri",host="dpg-cid8sflgkuvncfcha5vg-a.oregon-postgres.render.com",port="5432")
+conn = psycopg2.connect(database="url_shortner_sn7w", user="url_shortner_sn7w_user", password="aU0t8ENtxLdGBmyhGtEWfn8ASuiaOZri",host="dpg-cid8sflgkuvncfcha5vg-a",port="5432")
 con = conn.cursor()
 alt_table =" ALTER TABLE users ALTER COLUMN  qr_code TYPE text;"
 con.execute(alt_table)
