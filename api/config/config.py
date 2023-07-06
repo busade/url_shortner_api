@@ -33,13 +33,6 @@ class Test (Config):
     SQLALCHEMY_ECHO = True
     
 
-conn = psycopg2.connect(database="url_shortner_sn7w", user="url_shortner_sn7w_user", password="aU0t8ENtxLdGBmyhGtEWfn8ASuiaOZri",host="dpg-cid8sflgkuvncfcha5vg-a",port="5432")
-con = conn.cursor()
-alt_table =" ALTER TABLE links ALTER COLUMN  qr_code TYPE bytea USING qr_code::bytea;"
-con.execute(alt_table)
-conn.commit()
-con.close()
-conn.close()
 config_dict = {
     'dev':Dev,
     'prod':Prod,
